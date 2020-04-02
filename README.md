@@ -66,3 +66,107 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+## Terraform
+
+NOTE: There's still no provider dependency support in Terraform v0.12. The docker provider depends on the `infrastructure/hcloud/` Hetzner VPS to deploy the images, hence the dependency.
+
+The only workaround is to `terraform init` and `terraform apply` twice with the `-target` parameter, see https://github.com/hashicorp/terraform/issues/2430#issuecomment-195430847 for reference.
+
+
+### SSH Key
+
+Create an SSH Key for each domain:
+
+```bash
+$ ssh-keygen -t ed25519 -f ~/.ssh/eat.mealit.de
+```
+
+### Hetzner Floating IP
+
+Next create a `floating_ip` and add a label `key=eat.mealit.de`. NOTE: this is used in terraform to assign the floating_ip to the new Hetzner VPS.
+
+<div>
+    <img src="doc/images/hetzner_floating_ip_1.png" width="350" alt="Hetzner Floating IP Step 1">
+    <br>
+    <img src="doc/images/hetzner_floating_ip_2.png" width="350" alt="Hetzner Floating IP Step 2">
+    <br>
+    <img src="doc/images/hetzner_floating_ip_3.png" width="350" alt="Hetzner Floating IP Step 3">
+    <br>
+</div>
+
+### Hetzner Volume
+
+Create a Hetzner volume for each domain and add the necessary label:
+
+<div>
+    <img src="doc/images/hetzner_volume_1.png" width="350" alt="Hetzner Volume Step 1">
+    <br>
+    <img src="doc/images/hetzner_volume_2.png" width="350" alt="Hetzner Volume Step 2">
+    <br>
+    <img src="doc/images/hetzner_volume_3.png" width="350" alt="Hetzner Volume Step 3">
+    <br>
+</div>
+
+### Terraform Hetzner
+
+Create the workspaces (you must be inside the `coveat-app/terraform` directory:
+
+```bash
+$ terraform workspace new eat
+
+# Show workspaces
+
+$ terraform workspace list
+  default
+* eat
+```
+
+Next, for `eat.mealit.de` execute:
+
+```bash
+$ terraform workspace select eat
+$ export TF_VAR_hcloud_token='XXXX'
+$ export TF_VAR_domain='eat.mealit.de'
+```
+
+then, continue with:
+
+```bash
+$ terraform init
+$ terraform apply -target=module.infrastructure
+```
+
+NOTE: you need to login to the Hetzner server with your ssh key (either ~/.ssh/dev.mealit.de and ~/.ssh.admin.mealit.de) and accept the fingerprint
+
+This typically means you need to start an ssh-agent:
+
+```
+$ ssh-agent
+```
+
+and add the ssh key:
+
+```
+$ ssh-add ~/.ssh/eat.mealit.de
+```
+
+Remove (old) fingerprint if you destroyed a Hetzner VPS and just created a new one:
+```bash
+$ ssh-keygen -R eat.mealit.de
+```
+
+If you can login with:
+```bash
+$ ssh root@eat.mealit.de
+```
+
+without a password (login) prompt continue with "deploying" the docker apps:
+
+### Terraform Docker
+
+```bash
+$ terraform init
+$ terraform apply -target=module.apps
+```

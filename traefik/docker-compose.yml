@@ -1,0 +1,37 @@
+version: "3.3"
+
+services:
+
+  traefik:
+    image: "traefik:v2.0.4"
+    container_name: "traefik"
+    restart: always
+    command:
+      - "--log.level=info"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.frontend.address=:80"
+      - "--entryPoints.frontend-secure.address=:443"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+  frontend:
+    image: m4rc0z/coveat-app
+    container_name: "coveat-app"
+    restart: "always"
+    ports:
+      - 3000:80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.unchapp-admin-redirect-web-secure.redirectscheme.scheme=https"
+      - "traefik.http.routers.frontend.middlewares=coveat-app-redirect-web-secure"
+      - "traefik.http.routers.frontend.rule=Host(`traefik.localhost`)"
+      - "traefik.http.routers.frontend.entrypoints=frontend"
+      - "traefik.http.routers.frontend-secure.rule=Host(`traefik.localhost`)"
+      - "traefik.http.routers.frontend-secure.tls=true"
+      - "traefik.http.routers.frontend-secure.entrypoints=frontend-secure"
