@@ -69,7 +69,7 @@ resource "docker_container" "lunch-app-traefik" {
 
 # create frontend container
 data "docker_registry_image" "coveat-app" {
-  name = "m4rc0z/coveat-app:latest"
+  name = "m4rc0z/coveat-app:${var.domain}"
 }
 resource "docker_image" "coveat-app" {
   name          = data.docker_registry_image.coveat-app.name

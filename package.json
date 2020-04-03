@@ -14,7 +14,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:latest": "docker build -t m4rc0z/coveat-app:latest -f Dockerfile .",
+    "publish:latest": "docker push m4rc0z/coveat-app:latest",
+    "build:dev": "docker build -t m4rc0z/coveat-app:eat.mealit.de -f Dockerfile .",
+    "publish:dev": "docker push m4rc0z/coveat-app:eat.mealit.de",
+    "build:prod": "docker build --build-arg -t m4rc0z/coveat-app:eat.mealit.de -f Dockerfile .",
+    "publish:prod": "docker push m4rc0z/coveat-app:eat.mealit.de",
+    "docker:login": "echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin"
   },
   "eslintConfig": {
     "extends": "react-app"

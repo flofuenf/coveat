@@ -1,0 +1,22 @@
+dist: trusty
+
+jobs:
+  include:
+    - stage: build latest docker image and publish
+      if: branch != development && branch != master
+      script:
+        - npm run build:latest
+        - npm run docker:login
+        - npm run publish:latest
+    - stage: build dev docker image and publish
+      if: branch = development
+      script:
+        - npm run build:dev
+        - npm run docker:login
+        - npm run publish:dev
+    - stage: build prod docker image and publish
+      if: branch = master
+      script:
+        - npm run build:prod
+        - npm run docker:login
+        - npm run publish:prod
