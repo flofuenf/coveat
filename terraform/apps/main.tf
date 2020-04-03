@@ -30,11 +30,11 @@ resource "docker_container" "lunch-app-traefik" {
     "--providers.docker.exposedbydefault=false",
     "--entrypoints.frontend.address=:80",
     "--entryPoints.frontend-secure.address=:443",
-    "--certificatesresolvers.lunchmenuapp.acme.httpchallenge=true",
-    "--certificatesresolvers.lunchmenuapp.acme.httpChallenge.entryPoint=frontend",
-    #"--certificatesresolvers.lunchmenuapp.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory",
-    "--certificatesresolvers.lunchmenuapp.acme.email=m.zirkenbach@gmx.de",
-    "--certificatesresolvers.lunchmenuapp.acme.storage=/letsencrypt/acme.json",
+    "--certificatesresolvers.coveatapp.acme.httpchallenge=true",
+    "--certificatesresolvers.coveatapp.acme.httpChallenge.entryPoint=frontend",
+    #"--certificatesresolvers.coveatapp.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory",
+    "--certificatesresolvers.coveatapp.acme.email=m.zirkenbach@gmx.de",
+    "--certificatesresolvers.coveatapp.acme.storage=/letsencrypt/acme.json",
 ]
   restart  = "always"
   must_run = true
