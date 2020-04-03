@@ -32,6 +32,7 @@ export default function Home() {
                         addressLine1: 'Teststrasse 1',
                         addressLine2: '79713 Bad Säckingen',
                         phoneNumber: '+49 7761 12345',
+                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
                     }
                 ],
                 nonShippingProviders: [
@@ -41,6 +42,7 @@ export default function Home() {
                         addressLine1: 'Teststrasse 2',
                         addressLine2: '79713 Bad Säckingen',
                         phoneNumber: '+49 7761 12345',
+                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
                     }
                 ]
             }
@@ -62,7 +64,6 @@ export default function Home() {
 
     return (
         <div>
-            <Typography variant={"h1"}>Home</Typography>
             <Centered>{ CitySelection(cities, citySelected) }</Centered>
             <Centered>{ ShipmentSwitch(state.isShipping, shippingSwitched) }</Centered>
             <Centered>{ state.selectedCity && Overview(getProviders(state.selectedCity, state.isShipping), state.isShipping) }</Centered>

@@ -19,7 +19,8 @@ export default function ProviderCard(provider, isShipping) {
         <StyledCard>
             <CardActionArea>
                 <CardMedia
-                    image="/static/images/cards/contemplative-reptile.jpg"
+                    style={{height: 0, paddingTop: '56.25%'}}
+                    image={provider.overviewPictureUrl}
                     title="Contemplative Reptile"
                 />
                 <CardContent>
