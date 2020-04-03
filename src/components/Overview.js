@@ -1,19 +1,25 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import ProviderCard from "./ProviderCard";
+import styled from "styled-components";
 
-export default function Overview() {
+
+const StyledGrid = styled(Grid)`
+  justify-content: center;
+`;
+
+export default function Overview(providers) {
     return (
-        <Grid container spacing={2}>
+        <StyledGrid container spacing={2}>
             <Grid item>
                 <Grid container justify="center" spacing={2}>
-                    {[0, 1, 2, 3, 4, 5].map((value) => (
+                    {providers && providers.map((value) => (
                         <Grid key={value} item>
-                            { ProviderCard() }
+                            { ProviderCard(value) }
                         </Grid>
                     ))}
                 </Grid>
             </Grid>
-        </Grid>
+        </StyledGrid>
     );
 }

@@ -13,7 +13,7 @@ const StyledCard = styled(Card)`
   max-width: 400px;
 `;
 
-export default function ProviderCard() {
+export default function ProviderCard(provider) {
     return (
         <StyledCard>
             <CardActionArea>
@@ -23,7 +23,7 @@ export default function ProviderCard() {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Lizard
+                        {provider.name}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging

@@ -11,10 +11,11 @@ const StyledFormControl = styled(FormControl)`
   }
 `;
 
-export default function CitySelection() {
+export default function CitySelection(cities, selectedCity) {
     const [city, setCity] = React.useState('');
 
     const handleChange = (event) => {
+        selectedCity(event.target.value);
         setCity(event.target.value);
     };
 
@@ -28,8 +29,13 @@ export default function CitySelection() {
                     value={city}
                     onChange={handleChange}
                 >
-                    <MenuItem value={10}>Bad Säckingen</MenuItem>
-                    <MenuItem value={20}>Murg</MenuItem>
+                    {
+                        cities.map(c => {
+                            return (
+                                <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>
+                            )
+                        })
+                    }
                 </Select>
             </StyledFormControl>
         </div>
