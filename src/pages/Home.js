@@ -33,12 +33,58 @@ export default function Home() {
                         addressLine2: '79713 Bad Säckingen',
                         phoneNumber: '+49 7761 12345',
                         overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
+                    },
+                    {
+                        id: 2,
+                        name: 'Pizzeria Gabriele',
+                        addressLine1: 'Teststrasse 1',
+                        addressLine2: '79713 Bad Säckingen',
+                        phoneNumber: '+49 7761 12345',
+                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
+                    },
+                    {
+                        id: 3,
+                        name: 'Pizzeria Gabriele',
+                        addressLine1: 'Teststrasse 1',
+                        addressLine2: '79713 Bad Säckingen',
+                        phoneNumber: '+49 7761 12345',
+                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
+                    },
+                    {
+                        id: 4,
+                        name: 'Pizzeria Gabriele',
+                        addressLine1: 'Teststrasse 1',
+                        addressLine2: '79713 Bad Säckingen',
+                        phoneNumber: '+49 7761 12345',
+                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
                     }
                 ],
                 nonShippingProviders: [
                     {
-                        id: 2,
+                        id: 1,
                         name: 'Pizzeria Gabriele 2',
+                        addressLine1: 'Teststrasse 2',
+                        addressLine2: '79713 Bad Säckingen',
+                        phoneNumber: '+49 7761 12345',
+                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
+                    }
+                ]
+            },
+            "2": {
+                shippingProviders: [
+                    {
+                        id: 1,
+                        name: 'Pizzeria Test Name 123',
+                        addressLine1: 'Teststrasse 1',
+                        addressLine2: '79713 Bad Säckingen',
+                        phoneNumber: '+49 7761 12345',
+                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
+                    }
+                ],
+                nonShippingProviders: [
+                    {
+                        id: 1,
+                        name: 'Bäckerei Test',
                         addressLine1: 'Teststrasse 2',
                         addressLine2: '79713 Bad Säckingen',
                         phoneNumber: '+49 7761 12345',
