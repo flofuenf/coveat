@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import styled from "styled-components";
 import Chip from "@material-ui/core/Chip/Chip";
+import Phone from '@material-ui/icons/Phone';
 
 
 const StyledCard = styled(Card)`
@@ -42,6 +43,11 @@ export default function ProviderCard(provider, isShipping) {
             <CardActions>
                 <Button size="small" color="primary">
                     Speisekarte
+                </Button>
+                <Button>
+                    <a href={'tel://' + provider.phoneNumber}>
+                        <Phone color="primary"/>
+                    </a>
                 </Button>
             </CardActions>
         </StyledCard>
