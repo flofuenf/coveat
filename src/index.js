@@ -4,6 +4,8 @@ import {BrowserRouter} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import App from "./App";
 
+document.body.style.margin = "0";
+
 ReactDOM.render(
     <BrowserRouter>
         <App/>
