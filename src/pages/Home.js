@@ -51,6 +51,10 @@ export default function Home() {
         setState({...state, selectedCity: cityId})
     };
 
+    const shippingSwitched = (isShipping) => {
+        setState({...state, isShipping})
+    };
+
     const getProviders = (selectedCity, shipping) => {
         const providers = state.cityProviders[selectedCity];
         return shipping ? providers && providers.shippingProviders : providers && providers.nonShippingProviders;
@@ -60,8 +64,8 @@ export default function Home() {
         <div>
             <Typography variant={"h1"}>Home</Typography>
             <Centered>{ CitySelection(cities, citySelected) }</Centered>
-            <Centered>{ ShipmentSwitch() }</Centered>
-            <Centered>{ state.selectedCity && Overview(getProviders(state.selectedCity, state.isShipping)) }</Centered>
+            <Centered>{ ShipmentSwitch(state.isShipping, shippingSwitched) }</Centered>
+            <Centered>{ state.selectedCity && Overview(getProviders(state.selectedCity, state.isShipping), state.isShipping) }</Centered>
         </div>
     );
 }

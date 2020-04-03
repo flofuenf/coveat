@@ -7,13 +7,14 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import styled from "styled-components";
+import Chip from "@material-ui/core/Chip/Chip";
 
 
 const StyledCard = styled(Card)`
   max-width: 400px;
 `;
 
-export default function ProviderCard(provider) {
+export default function ProviderCard(provider, isShipping) {
     return (
         <StyledCard>
             <CardActionArea>
@@ -25,18 +26,21 @@ export default function ProviderCard(provider) {
                     <Typography gutterBottom variant="h5" component="h2">
                         {provider.name}
                     </Typography>
+                    <Chip color="primary" label={isShipping ? 'Lieferservice' : 'Selbstabholung'}/>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                        across all continents except Antarctica
+                        {provider.addressLine1}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {provider.addressLine2}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {provider.phoneNumber}
                     </Typography>
                 </CardContent>
             </CardActionArea>
             <CardActions>
                 <Button size="small" color="primary">
-                    Share
-                </Button>
-                <Button size="small" color="primary">
-                    Learn More
+                    Speisekarte
                 </Button>
             </CardActions>
         </StyledCard>
