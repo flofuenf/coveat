@@ -12,7 +12,7 @@ import Phone from '@material-ui/icons/Phone';
 
 
 const StyledCard = styled(Card)`
-  max-width: 400px;
+  width: 200px;
 `;
 
 export default function ProviderCard(provider, isShipping) {
@@ -24,8 +24,8 @@ export default function ProviderCard(provider, isShipping) {
                     image={provider.overviewPictureUrl}
                     title="Contemplative Reptile"
                 />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                <CardContent style={{height: 150}}>
+                    <Typography gutterBottom variant="h6" component="h2">
                         {provider.name}
                     </Typography>
                     <Chip color="primary" label={isShipping ? 'Lieferservice' : 'Selbstabholung'}/>
