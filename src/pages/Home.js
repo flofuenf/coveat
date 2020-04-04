@@ -13,11 +13,11 @@ export default function Home() {
     const cities = [
         {
             id: "1",
-            name: 'Bad Säckingen',
+            name: 'Wehr',
         },
         {
             id: "2",
-            name: 'Murg',
+            name: 'Bad Säckingen',
         }
     ];
     const [state, setState] = React.useState({
@@ -29,45 +29,45 @@ export default function Home() {
                 shippingProviders: [
                     {
                         id: "s1",
-                        name: 'Pizzeria Gabriele',
-                        addressLine1: 'Teststrasse 1',
-                        addressLine2: '79713 Bad Säckingen',
-                        phoneNumber: '+49 7761 12345',
-                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
+                        name: 'Pizza Jet',
+                        addressLine1: 'Wehratalstraße 98',
+                        addressLine2: '79664 Wehr-Öflingen',
+                        phoneNumber: '+49 7761 936868',
+                        overviewPictureUrl: 'https://www.dropbox.com/s/f40frhceyu3gcby/overview.jpg?raw=1',
                     },
                     {
                         id: "s2",
-                        name: 'Pizzeria Gabriele',
-                        addressLine1: 'Teststrasse 1',
-                        addressLine2: '79713 Bad Säckingen',
-                        phoneNumber: '+49 7761 12345',
-                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
+                        name: 'Ristorante zum Wehratal',
+                        addressLine1: 'Todtmooser Straße 52',
+                        addressLine2: '79664 Wehr',
+                        phoneNumber: '+49 7762 8058335',
+                        overviewPictureUrl: 'https://www.dropbox.com/s/14rksaj9b1exyo7/overview.jpg?raw=1',
                     },
-                    {
-                        id: "s3",
-                        name: 'Pizzeria Gabriele',
-                        addressLine1: 'Teststrasse 1',
-                        addressLine2: '79713 Bad Säckingen',
-                        phoneNumber: '+49 7761 12345',
-                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
-                    },
-                    {
-                        id: "s4",
-                        name: 'Pizzeria Gabriele',
-                        addressLine1: 'Teststrasse 1',
-                        addressLine2: '79713 Bad Säckingen',
-                        phoneNumber: '+49 7761 12345',
-                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
-                    }
                 ],
                 nonShippingProviders: [
                     {
                         id: "ns1",
-                        name: 'Pizzeria Gabriele 2',
-                        addressLine1: 'Teststrasse 2',
-                        addressLine2: '79713 Bad Säckingen',
-                        phoneNumber: '+49 7761 12345',
-                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
+                        name: 'Bäckerei Albiez',
+                        addressLine1: 'Haupstraße 22',
+                        addressLine2: '79664 Wehr',
+                        phoneNumber: '+49 7762 8706',
+                        overviewPictureUrl: 'https://www.dropbox.com/s/ie9wi4nfzamgnd1/overview.jpg?raw=1',
+                    },
+                    {
+                        id: "ns2",
+                        name: 'Bäckerei Fricker',
+                        addressLine1: 'Hauptstraße 33',
+                        addressLine2: '79664 Wehr',
+                        phoneNumber: '+49 7762 3203',
+                        overviewPictureUrl: 'https://www.dropbox.com/s/9i1po5wf0g59occ/overview.jpg?raw=1',
+                    },
+                    {
+                        id: "ns3",
+                        name: 'Gasthaus Krone',
+                        addressLine1: 'Hauptstraße 72',
+                        addressLine2: '79664 Wehr',
+                        phoneNumber: '+49 7762 807171',
+                        overviewPictureUrl: 'https://www.dropbox.com/s/id48jcoaom9t0b9/overview.jpg?raw=1',
                     }
                 ]
             },
@@ -75,21 +75,29 @@ export default function Home() {
                 shippingProviders: [
                     {
                         id: "s1",
-                        name: 'Pizzeria Test Name 123',
-                        addressLine1: 'Teststrasse 1',
+                        name: 'Ristorante Pizzeria Da Gabriele',
+                        addressLine1: 'Schaffhauser Straße 55',
                         addressLine2: '79713 Bad Säckingen',
-                        phoneNumber: '+49 7761 12345',
-                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
+                        phoneNumber: '+49 7761 8732',
+                        overviewPictureUrl: 'https://www.dropbox.com/s/kedzzjb06gd4g12/overview.jpg?raw=1',
+                    },
+                    {
+                        id: "s2",
+                        name: 'Pizza Venedig',
+                        addressLine1: 'Schaffhauser Straße 73',
+                        addressLine2: '79713 Bad Säckingen',
+                        phoneNumber: '+49 7761 5566630',
+                        overviewPictureUrl: 'https://www.dropbox.com/s/zssyvgg7dv57mkj/overview.png?raw=1',
                     }
                 ],
                 nonShippingProviders: [
                     {
                         id: "ns1",
-                        name: 'Bäckerei Test',
-                        addressLine1: 'Teststrasse 2',
+                        name: 'Hotel Restaurant Kater Hiddigeigei',
+                        addressLine1: 'Tanzenplatz 2',
                         addressLine2: '79713 Bad Säckingen',
-                        phoneNumber: '+49 7761 12345',
-                        overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
+                        phoneNumber: '+49 7761 556440',
+                        overviewPictureUrl: 'https://www.dropbox.com/s/g0mlevz3r784vlw/overview.jpg?raw=1',
                     }
                 ]
             }
@@ -127,14 +135,15 @@ export default function Home() {
         <div>
             <Centered>{CitySelection(cities, citySelected)}</Centered>
             <Centered>
-                <ShipmentSwitch isShipping={state.isShipping} shippingSwitched={shippingSwitched}></ShipmentSwitch>
+                <ShipmentSwitch isShipping={state.isShipping} shippingSwitched={shippingSwitched}/>
             </Centered>
             <Centered>
                 <NonShipmentSwitch isNonShipping={state.isNonShipping}
-                                   nonShippingSwitched={nonShippingSwitched}></NonShipmentSwitch>
+                                   nonShippingSwitched={nonShippingSwitched}/>
             </Centered>
             <Centered>
-                {state.selectedCity && <Overview providers={getProviders(state.selectedCity, state.isShipping, state.isNonShipping)}></Overview>}</Centered>
+                {state.selectedCity && <Overview
+                    providers={getProviders(state.selectedCity, state.isShipping, state.isNonShipping)}/>}</Centered>
         </div>
     );
 }
