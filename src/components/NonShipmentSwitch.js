@@ -2,17 +2,17 @@ import React, {useEffect} from 'react';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-export default function ShipmentSwitch(props) {
+export default function NonShipmentSwitch(props) {
     const [state, setState] = React.useState({
-        shipment: props.isShipping,
+        shipment: props.isNonShipping,
     });
 
     useEffect(() => {
-        setState({ ...state, shipment: props.isShipping});
-    }, [props.isShipping]);
+        setState({ ...state, shipment: props.isNonShipping});
+    }, [props.isNonShipping]);
 
     const handleChange = (event) => {
-        props.shippingSwitched(event.target.checked);
+        props.nonShippingSwitched(event.target.checked);
         setState({ ...state, [event.target.name]: event.target.checked });
     };
 
@@ -27,7 +27,7 @@ export default function ShipmentSwitch(props) {
                         color="primary"
                     />
                 }
-                label="Lieferservice"
+                label="Selbstabholung"
             />
         </div>
     );

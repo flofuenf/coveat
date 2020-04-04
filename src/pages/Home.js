@@ -1,9 +1,9 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
 import CitySelection from "../components/CitySelection";
 import styled from "styled-components";
 import ShipmentSwitch from "../components/ShipmentSwitch";
 import Overview from "../components/Overview";
+import NonShipmentSwitch from "../components/NonShipmentSwitch";
 
 const Centered = styled.div`
   text-align: center;
@@ -23,11 +23,12 @@ export default function Home() {
     const [state, setState] = React.useState({
         selectedCity: undefined,
         isShipping: false,
+        isNonShipping: false,
         cityProviders: {
             "1": {
                 shippingProviders: [
                     {
-                        id: 1,
+                        id: "s1",
                         name: 'Pizzeria Gabriele',
                         addressLine1: 'Teststrasse 1',
                         addressLine2: '79713 Bad Säckingen',
@@ -35,7 +36,7 @@ export default function Home() {
                         overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
                     },
                     {
-                        id: 2,
+                        id: "s2",
                         name: 'Pizzeria Gabriele',
                         addressLine1: 'Teststrasse 1',
                         addressLine2: '79713 Bad Säckingen',
@@ -43,7 +44,7 @@ export default function Home() {
                         overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
                     },
                     {
-                        id: 3,
+                        id: "s3",
                         name: 'Pizzeria Gabriele',
                         addressLine1: 'Teststrasse 1',
                         addressLine2: '79713 Bad Säckingen',
@@ -51,7 +52,7 @@ export default function Home() {
                         overviewPictureUrl: 'https://i.ibb.co/x2ZYmj9/gabriele.jpg',
                     },
                     {
-                        id: 4,
+                        id: "s4",
                         name: 'Pizzeria Gabriele',
                         addressLine1: 'Teststrasse 1',
                         addressLine2: '79713 Bad Säckingen',
@@ -61,7 +62,7 @@ export default function Home() {
                 ],
                 nonShippingProviders: [
                     {
-                        id: 1,
+                        id: "ns1",
                         name: 'Pizzeria Gabriele 2',
                         addressLine1: 'Teststrasse 2',
                         addressLine2: '79713 Bad Säckingen',
@@ -73,7 +74,7 @@ export default function Home() {
             "2": {
                 shippingProviders: [
                     {
-                        id: 1,
+                        id: "s1",
                         name: 'Pizzeria Test Name 123',
                         addressLine1: 'Teststrasse 1',
                         addressLine2: '79713 Bad Säckingen',
@@ -83,7 +84,7 @@ export default function Home() {
                 ],
                 nonShippingProviders: [
                     {
-                        id: 1,
+                        id: "ns1",
                         name: 'Bäckerei Test',
                         addressLine1: 'Teststrasse 2',
                         addressLine2: '79713 Bad Säckingen',
@@ -100,19 +101,40 @@ export default function Home() {
     };
 
     const shippingSwitched = (isShipping) => {
-        setState({...state, isShipping})
+        setState({...state, isShipping: isShipping, isNonShipping: state.isNonShipping ? false : state.isNonShipping});
+    };
+    const nonShippingSwitched = (isNonShipping) => {
+        setState({...state, isNonShipping: isNonShipping, isShipping: state.isShipping ? false : state.isShipping});
     };
 
-    const getProviders = (selectedCity, shipping) => {
+    const getProviders = (selectedCity, shipping, nonShipping) => {
         const providers = state.cityProviders[selectedCity];
-        return shipping ? providers && providers.shippingProviders : providers && providers.nonShippingProviders;
+        if (!shipping && !nonShipping) {
+            return providers && providers.shippingProviders
+                .map(nsp => ({...nsp, isShipping: true}))
+                .concat(providers.nonShippingProviders
+                    .map(nsp => ({...nsp, isShipping: false})),
+                );
+        }
+        if (shipping) {
+            return providers && providers.shippingProviders.map(nsp => ({...nsp, isShipping: true}));
+        } else {
+            return providers && providers.nonShippingProviders.map(nsp => ({...nsp, isShipping: false}));
+        }
     };
 
     return (
         <div>
-            <Centered>{ CitySelection(cities, citySelected) }</Centered>
-            <Centered>{ ShipmentSwitch(state.isShipping, shippingSwitched) }</Centered>
-            <Centered>{ state.selectedCity && Overview(getProviders(state.selectedCity, state.isShipping), state.isShipping) }</Centered>
+            <Centered>{CitySelection(cities, citySelected)}</Centered>
+            <Centered>
+                <ShipmentSwitch isShipping={state.isShipping} shippingSwitched={shippingSwitched}></ShipmentSwitch>
+            </Centered>
+            <Centered>
+                <NonShipmentSwitch isNonShipping={state.isNonShipping}
+                                   nonShippingSwitched={nonShippingSwitched}></NonShipmentSwitch>
+            </Centered>
+            <Centered>
+                {state.selectedCity && <Overview providers={getProviders(state.selectedCity, state.isShipping, state.isNonShipping)}></Overview>}</Centered>
         </div>
     );
 }

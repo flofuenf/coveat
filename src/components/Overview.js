@@ -8,14 +8,14 @@ const StyledGrid = styled(Grid)`
   justify-content: center;
 `;
 
-export default function Overview(providers, isShipping) {
+export default function Overview(props) {
     return (
         <StyledGrid container spacing={2}>
             <Grid item>
                 <Grid container justify="center" spacing={2}>
-                    {providers && providers.map((value) => (
-                        <Grid key={value} item>
-                            { ProviderCard(value, isShipping) }
+                    {props.providers && props.providers.map((value) => (
+                        <Grid key={value.id} item>
+                            { ProviderCard(value, value.isShipping) }
                         </Grid>
                     ))}
                 </Grid>
