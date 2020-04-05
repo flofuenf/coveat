@@ -146,14 +146,15 @@ let themeBase = createMuiTheme({
                 whiteSpace: 'nowrap'
             },
             paper: {
-                backgroundColor: secColor,
+                minWidth: "240px",
+                backgroundColor: "whitesmoke",
                 overflowX: 'hidden',
                 boxShadow: "-3px 0px 15px 0px rgba(0, 0, 0, 0.5)"
             }
         },
         MuiDivider: {
             root: {
-                backgroundColor: "#FFFFFF"
+                backgroundColor: secColor
             }
         },
         props: {}
