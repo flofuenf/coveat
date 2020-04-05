@@ -1,8 +1,8 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
-export default function Test1() {
+export default function About() {
     return (
-        <Typography variant={"h1"}>Test1</Typography>
+        <Typography variant={"h1"}>About Page</Typography>
     );
 }

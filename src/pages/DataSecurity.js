@@ -1,8 +1,8 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
-export default function Test2() {
+export default function DataSecurity() {
     return (
-        <Typography variant={"h1"}>Test2</Typography>
+        <Typography variant={"h1"}>Datenschutz</Typography>
     );
 }

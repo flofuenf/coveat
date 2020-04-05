@@ -8,23 +8,39 @@ import Divider from "@material-ui/core/Divider";
 import SecurityIcon from '@material-ui/icons/Security';
 import ContactIcon from '@material-ui/icons/ContactMail';
 import InfoIcon from '@material-ui/icons/Info';
+import HomeIcon from '@material-ui/icons/Home';
+import {useHistory} from "react-router-dom";
 
-function SideMenu() {
+function SideMenu(props) {
+    const history = useHistory();
+
+    function navigateTo(link) {
+        history.push(link);
+        props.toggleDrawer()
+    }
+
     return (
         <div>
             <List>
-                <ListItem button>
+                <ListItem button onClick={() => navigateTo("/")}>
+                    <ListItemIcon><HomeIcon/></ListItemIcon>
+                    <ListItemText>Home</ListItemText>
+                </ListItem>
+            </List>
+            <Divider/>
+            <List>
+                <ListItem button onClick={() => navigateTo("/security")}>
                     <ListItemIcon><SecurityIcon/></ListItemIcon>
                     <ListItemText>Datenschutz</ListItemText>
                 </ListItem>
-                <ListItem button>
+                <ListItem button onClick={() => navigateTo("about")}>
                     <ListItemIcon><InfoIcon/></ListItemIcon>
                     <ListItemText>Impressum</ListItemText>
                 </ListItem>
             </List>
             <Divider/>
             <List>
-                <ListItem button>
+                <ListItem button onClick={() => navigateTo("")}>
                     <ListItemIcon><ContactIcon/></ListItemIcon>
                     <ListItemText>Kontakt</ListItemText>
                 </ListItem>
@@ -37,27 +53,8 @@ export default function SideBar(props) {
     return (
         <React.Fragment>
             <Drawer variant={"temporary"} anchor={'left'} open={props.open} onClose={() => props.toggleDrawer()}>
-                <div
-                    role="presentation"
-                >
-                    <SideMenu/>
-                    {/*<List>*/}
-                    {/*    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (*/}
-                    {/*        <ListItem button key={text}>*/}
-                    {/*            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>*/}
-                    {/*            <ListItemText primary={text}/>*/}
-                    {/*        </ListItem>*/}
-                    {/*    ))}*/}
-                    {/*</List>*/}
-                    {/*<Divider/>*/}
-                    {/*<List>*/}
-                    {/*    {['All mail', 'Trash', 'Spam'].map((text, index) => (*/}
-                    {/*        <ListItem button key={text}>*/}
-                    {/*            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>*/}
-                    {/*            <ListItemText primary={text}/>*/}
-                    {/*        </ListItem>*/}
-                    {/*    ))}*/}
-                    {/*</List>*/}
+                <div role="presentation">
+                    <SideMenu toggleDrawer={props.toggleDrawer}/>
                 </div>
             </Drawer>
         </React.Fragment>
