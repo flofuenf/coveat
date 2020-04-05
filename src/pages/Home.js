@@ -34,6 +34,7 @@ export default function Home() {
                         addressLine2: '79664 Wehr-Öflingen',
                         phoneNumber: '+49 7761 936868',
                         overviewPictureUrl: 'https://www.dropbox.com/s/f40frhceyu3gcby/overview.jpg?raw=1',
+                        offerUrl: 'https://www.dropbox.com/s/1hq5gopzwp2ulc6/sample.pdf?raw=1',
                     },
                     {
                         id: "s2",
@@ -42,6 +43,7 @@ export default function Home() {
                         addressLine2: '79664 Wehr',
                         phoneNumber: '+49 7762 8058335',
                         overviewPictureUrl: 'https://www.dropbox.com/s/14rksaj9b1exyo7/overview.jpg?raw=1',
+                        offerUrl: 'https://www.dropbox.com/s/1hq5gopzwp2ulc6/sample.pdf?raw=1',
                     },
                 ],
                 nonShippingProviders: [
@@ -52,6 +54,7 @@ export default function Home() {
                         addressLine2: '79664 Wehr',
                         phoneNumber: '+49 7762 8706',
                         overviewPictureUrl: 'https://www.dropbox.com/s/ie9wi4nfzamgnd1/overview.jpg?raw=1',
+                        offerUrl: 'https://www.dropbox.com/s/1hq5gopzwp2ulc6/sample.pdf?raw=1',
                     },
                     {
                         id: "ns2",
@@ -60,6 +63,7 @@ export default function Home() {
                         addressLine2: '79664 Wehr',
                         phoneNumber: '+49 7762 3203',
                         overviewPictureUrl: 'https://www.dropbox.com/s/9i1po5wf0g59occ/overview.jpg?raw=1',
+                        offerUrl: 'https://www.dropbox.com/s/1hq5gopzwp2ulc6/sample.pdf?raw=1',
                     },
                     {
                         id: "ns3",
@@ -68,6 +72,7 @@ export default function Home() {
                         addressLine2: '79664 Wehr',
                         phoneNumber: '+49 7762 807171',
                         overviewPictureUrl: 'https://www.dropbox.com/s/id48jcoaom9t0b9/overview.jpg?raw=1',
+                        offerUrl: 'https://www.dropbox.com/s/1hq5gopzwp2ulc6/sample.pdf?raw=1',
                     }
                 ]
             },
@@ -80,6 +85,7 @@ export default function Home() {
                         addressLine2: '79713 Bad Säckingen',
                         phoneNumber: '+49 7761 8732',
                         overviewPictureUrl: 'https://www.dropbox.com/s/kedzzjb06gd4g12/overview.jpg?raw=1',
+                        offerUrl: 'https://www.dropbox.com/s/1hq5gopzwp2ulc6/sample.pdf?raw=1',
                     },
                     {
                         id: "s2",
@@ -88,6 +94,7 @@ export default function Home() {
                         addressLine2: '79713 Bad Säckingen',
                         phoneNumber: '+49 7761 5566630',
                         overviewPictureUrl: 'https://www.dropbox.com/s/zssyvgg7dv57mkj/overview.png?raw=1',
+                        offerUrl: 'https://www.dropbox.com/s/1hq5gopzwp2ulc6/sample.pdf?raw=1',
                     }
                 ],
                 nonShippingProviders: [
@@ -98,6 +105,7 @@ export default function Home() {
                         addressLine2: '79713 Bad Säckingen',
                         phoneNumber: '+49 7761 556440',
                         overviewPictureUrl: 'https://www.dropbox.com/s/g0mlevz3r784vlw/overview.jpg?raw=1',
+                        offerUrl: 'https://www.dropbox.com/s/1hq5gopzwp2ulc6/sample.pdf?raw=1',
                     }
                 ]
             }
