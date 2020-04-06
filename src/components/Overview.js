@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 const StyledGrid = styled(Grid)`
   justify-content: center;
+  display: block;
 `;
 
 export default function Overview(props) {
