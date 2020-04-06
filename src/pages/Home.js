@@ -7,6 +7,10 @@ import NonShipmentSwitch from "../components/NonShipmentSwitch";
 
 const Centered = styled.div`
   text-align: center;
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 `;
 
 export default function Home() {
@@ -140,18 +144,15 @@ export default function Home() {
     };
 
     return (
-        <div>
-            <Centered>{CitySelection(cities, citySelected)}</Centered>
-            <Centered>
-                <ShipmentSwitch isShipping={state.isShipping} shippingSwitched={shippingSwitched}/>
-            </Centered>
-            <Centered>
-                <NonShipmentSwitch isNonShipping={state.isNonShipping}
-                                   nonShippingSwitched={nonShippingSwitched}/>
-            </Centered>
-            <Centered>
-                {state.selectedCity && <Overview
-                    providers={getProviders(state.selectedCity, state.isShipping, state.isNonShipping)}/>}</Centered>
-        </div>
+        <Centered>
+            {CitySelection(cities, citySelected)}
+            <br/>
+            <ShipmentSwitch isShipping={state.isShipping} shippingSwitched={shippingSwitched}/>
+            <NonShipmentSwitch isNonShipping={state.isNonShipping}
+                               nonShippingSwitched={nonShippingSwitched}/>
+            <br/>
+            {state.selectedCity && <Overview
+                providers={getProviders(state.selectedCity, state.isShipping, state.isNonShipping)}/>}
+        </Centered>
     );
 }

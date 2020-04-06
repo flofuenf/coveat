@@ -11,7 +11,7 @@ export default function App() {
     return (
         <div>
             <MuiThemeProvider theme={theme}>
-                <div>{BasicAppBar()}</div>
+                <div><BasicAppBar/></div>
                 <div>
                     <Route exact path='/' component={Home}/>
                     <Route exact path='/security' component={DataSecurity}/>

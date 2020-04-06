@@ -7,7 +7,7 @@ import Select from '@material-ui/core/Select';
 
 const StyledFormControl = styled(FormControl)`
   &.MuiFormControl-root {
-      min-width: 200px;
+      min-width: 250px;
   }
 `;
 
@@ -22,10 +22,8 @@ export default function CitySelection(cities, selectedCity) {
     return (
         <div>
             <StyledFormControl>
-                <InputLabel id="demo-simple-select-label">Stadt auswählen</InputLabel>
+                <InputLabel>Stadt auswählen</InputLabel>
                 <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
                     value={city}
                     onChange={handleChange}
                 >
