@@ -20,14 +20,15 @@ export default function ProviderCard(provider, isShipping) {
         <StyledCard>
             <CardActionArea>
                 <CardMedia
-                    style={{height: 0, paddingTop: '56.25%'}}
+                    style={{height: 0, paddingTop: '140px'}}
                     image={provider.overviewPictureUrl}
-                    title="Contemplative Reptile"
+                    title="Overview Image"
                 />
-                <CardContent style={{height: 150}}>
-                    <Typography gutterBottom variant="h6" component="h2">
+                <CardContent style={{height: 160}}>
+                    <Typography gutterBottom variant="h6" style={{fontSize: "1.3em", margin: 0}}>
                         {provider.name}
                     </Typography>
+                    <br/>
                     <Chip color="primary" label={isShipping ? 'Lieferservice' : 'Selbstabholung'}/>
                     <Typography variant="body2" color="textSecondary" component="p">
                         {provider.addressLine1}
@@ -41,7 +42,7 @@ export default function ProviderCard(provider, isShipping) {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small" color="primary">
+                <Button size="medium" color="primary">
                     Speisekarte
                 </Button>
                 <Button>

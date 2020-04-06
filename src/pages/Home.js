@@ -7,8 +7,8 @@ import NonShipmentSwitch from "../components/NonShipmentSwitch";
 
 const Centered = styled.div`
   text-align: center;
-  margin-left: 70px;
-  margin-right: 70px;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-top: 30px;
   margin-bottom: 30px;
 `;
