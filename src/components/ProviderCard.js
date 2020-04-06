@@ -25,20 +25,26 @@ export default function ProviderCard(provider, isShipping) {
                     title="Overview Image"
                 />
                 <CardContent style={{height: 160}}>
-                    <Typography gutterBottom variant="h6" style={{fontSize: "1.3em", margin: 0}}>
-                        {provider.name}
-                    </Typography>
-                    <br/>
-                    <Chip color="primary" label={isShipping ? 'Lieferservice' : 'Selbstabholung'}/>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {provider.addressLine1}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {provider.addressLine2}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {provider.phoneNumber}
-                    </Typography>
+                    <div style={{flex: 1}}>
+                        <Typography gutterBottom variant="h6" style={{fontSize: "1.3em", margin: 0}}>
+                            {provider.name}
+                        </Typography>
+                        <br/>
+                        <div style={{position: "absolute", bottom: 10, width: "85%"}}>
+                            <Chip color="primary" label={isShipping ? 'Lieferservice' : 'Selbstabholung'}/>
+                            <br/>
+                            <br/>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {provider.addressLine1}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {provider.addressLine2}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {provider.phoneNumber}
+                            </Typography>
+                        </div>
+                    </div>
                 </CardContent>
             </CardActionArea>
             <CardActions>
