@@ -2,8 +2,8 @@ import React from 'react';
 import {MuiThemeProvider} from "@material-ui/core";
 import {Route} from "react-router-dom";
 import Home from "./pages/Home";
-import DataSecurity from "./pages/DataSecurity";
 import About from "./pages/About";
+import DataSecurity from "./pages/DataSecurity";
 import {theme} from "./themes/theme"
 import BasicAppBar from "./components/AppBar";
 
