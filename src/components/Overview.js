@@ -9,13 +9,17 @@ const StyledGrid = styled(Grid)`
 `;
 
 export default function Overview(props) {
+    const navigateToDetail = (id) => {
+        props.history.push('city/' + props.selectedCity + '/provider/' + id);
+    };
+
     return (
         <StyledGrid container spacing={2}>
             <Grid item>
                 <Grid container justify="center" spacing={2}>
                     {props.providers && props.providers.map((value) => (
                         <Grid key={value.id} item>
-                            { ProviderCard(value, value.isShipping) }
+                            { ProviderCard(value, value.isShipping, navigateToDetail) }
                         </Grid>
                     ))}
                 </Grid>

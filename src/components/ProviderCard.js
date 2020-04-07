@@ -15,7 +15,7 @@ const StyledCard = styled(Card)`
   width: 200px;
 `;
 
-export default function ProviderCard(provider, isShipping) {
+export default function ProviderCard(provider, isShipping, navigateToDetail) {
     return (
         <StyledCard>
             <CardActionArea>
@@ -41,7 +41,7 @@ export default function ProviderCard(provider, isShipping) {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small" color="primary">
+                <Button size="small" color="primary" onClick={() => navigateToDetail(provider.id)}>
                     Speisekarte
                 </Button>
                 <Button>
