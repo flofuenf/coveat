@@ -37,7 +37,7 @@ function SideMenu(props) {
                     <ListItemIcon><SecurityIcon/></ListItemIcon>
                     <ListItemText>Datenschutz</ListItemText>
                 </ListItem>
-                <ListItem button onClick={() => navigateTo("about")}>
+                <ListItem button onClick={() => navigateTo("/about")}>
                     <ListItemIcon><InfoIcon/></ListItemIcon>
                     <ListItemText>Impressum</ListItemText>
                 </ListItem>
