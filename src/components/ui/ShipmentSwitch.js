@@ -9,7 +9,7 @@ export default function ShipmentSwitch(props) {
 
     useEffect(() => {
         setState({ ...state, shipment: props.isShipping});
-    }, [props.isShipping, state]);
+    }, [props.isShipping]);
 
     const handleChange = (event) => {
         props.shippingSwitched(event.target.checked);

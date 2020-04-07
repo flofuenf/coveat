@@ -1,28 +1,26 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import styled from "styled-components";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Divider from "@material-ui/core/Divider";
-
-const Centered = styled.div`
-  text-align: center;
-  margin-left: 70px;
-  margin-right: 70px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-`;
 
 const styles = theme => ({
     header: {
         marginTop: 40,
         marginBottom: 14,
+    },
+    centered: {
+        textAlign: "center",
+        marginLeft: 70,
+        marginRight: 70,
+        marginTop: 30,
+        marginBottom: 30,
     }
 });
 
 export default withStyles(styles)(function About(props) {
     const {classes} = props;
     return (
-        <Centered>
+        <div className={classes.centered}>
             <Typography variant={"h2"}>Impressum</Typography>
             <Divider style={{marginTop: 15, marginBottom: 35, height: 2}}/>
 
@@ -98,6 +96,6 @@ export default withStyles(styles)(function About(props) {
                 bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir
                 derartige Inhalte unverzüglich entfernen.
             </Typography>
-        </Centered>
+        </div>
     );
 })

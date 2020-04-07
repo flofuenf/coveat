@@ -9,7 +9,7 @@ export default function NonShipmentSwitch(props) {
 
     useEffect(() => {
         setState({ ...state, shipment: props.isNonShipping});
-    }, [props.isNonShipping, state]);
+    }, [props.isNonShipping]);
 
     const handleChange = (event) => {
         props.nonShippingSwitched(event.target.checked);

@@ -92,6 +92,11 @@ let themeBase = createMuiTheme({
             //     marginleft: spacing * 4
             // }
         },
+        MuiFormControl:{
+            root: {
+              minWidth: 250
+            }
+        },
         MuiFormControlLabel: {
             root: {}
         },

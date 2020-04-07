@@ -1,15 +1,8 @@
 import React from "react";
-import styled from "styled-components";
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
-const StyledFormControl = styled(FormControl)`
-  &.MuiFormControl-root {
-      min-width: 250px;
-  }
-`;
 
 export default function CitySelection(cities, selectedCity) {
     const [city, setCity] = React.useState('');
@@ -21,7 +14,7 @@ export default function CitySelection(cities, selectedCity) {
 
     return (
         <div>
-            <StyledFormControl>
+            <FormControl>
                 <InputLabel>Stadt auswählen</InputLabel>
                 <Select
                     value={city}
@@ -35,7 +28,7 @@ export default function CitySelection(cities, selectedCity) {
                         })
                     }
                 </Select>
-            </StyledFormControl>
+            </FormControl>
         </div>
     );
 }

@@ -1,19 +1,22 @@
 import React from "react";
 import CitySelection from "../components/ui/CitySelection";
-import styled from "styled-components";
 import ShipmentSwitch from "../components/ui/ShipmentSwitch";
 import Overview from "../components/Overview";
 import NonShipmentSwitch from "../components/ui/NonShipmentSwitch";
+import withStyles from "@material-ui/core/styles/withStyles";
 
-const Centered = styled.div`
-  text-align: center;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-`;
+const styles = theme => ({
+    centered: {
+        textAlign: "center",
+        marginLeft: 70,
+        marginRight: 70,
+        marginTop: 30,
+        marginBottom: 30,
+    }
+});
 
-export default function Home() {
+export default withStyles(styles) (function Home(props) {
+    const {classes} = props;
     const cities = [
         {
             id: "1",
@@ -144,7 +147,7 @@ export default function Home() {
     };
 
     return (
-        <Centered>
+        <div className={classes.centered}>
             {CitySelection(cities, citySelected)}
             <br/>
             <ShipmentSwitch isShipping={state.isShipping} shippingSwitched={shippingSwitched}/>
@@ -153,6 +156,6 @@ export default function Home() {
             <br/>
             {state.selectedCity && <Overview
                 providers={getProviders(state.selectedCity, state.isShipping, state.isNonShipping)}/>}
-        </Centered>
+        </div>
     );
-}
+})
