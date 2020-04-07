@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
@@ -24,13 +24,13 @@ const styles = (theme) => ({
 });
 
 const DialogTitle = withStyles(styles)(props => {
-    const { children, classes, onClose, ...other } = props;
+    const {children, classes, onClose, ...other} = props;
     return (
         <MuiDialogTitle disableTypography className={classes.root} {...other}>
-            <Typography variant="h6">{children}</Typography>
+            <Typography variant="h4">{children}</Typography>
             {onClose ? (
                 <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-                    <CloseIcon />
+                    <CloseIcon/>
                 </IconButton>
             ) : null}
         </MuiDialogTitle>
@@ -59,22 +59,28 @@ export default function ContactDialog(props) {
                     Du möchtest uns unterstützen?
                 </DialogTitle>
                 <DialogContent dividers>
-                    <Typography gutterBottom>
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-                        in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                    </Typography>
-                    <Typography gutterBottom>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-                        lacus vel augue laoreet rutrum faucibus dolor auctor.
-                    </Typography>
-                    <Typography gutterBottom>
-                        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-                        scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-                        auctor fringilla.
-                    </Typography>
+                    <div style={{textAlign: "center"}}>
+                        <Typography gutterBottom variant={"h6"}>
+                            Möchtest du dein Unternehmen hier aufgelistet haben, oder uns unterstützen? Wir freuen uns
+                            über jede neue Nachricht!
+                        </Typography>
+                        <br/>
+
+                        <Typography gutterBottom variant={"h5"}>
+                            Melde dich einfach per Mail an folgende Adresse:
+                        </Typography>
+                        <br/>
+                        <Typography gutterBottom style={{color: "blue", fontSize: 20}}>
+                            admin@dwarftech.de
+                        </Typography>
+                        <Typography gutterBottom>
+                            Ansprechpartner: Marco & Florian
+                        </Typography>
+                    </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={() => props.dialogClose()} color="primary" style={{fontWeight: "bold", color: theme.palette.secondary.main}}>
+                    <Button autoFocus onClick={() => props.dialogClose()} color="primary"
+                            style={{fontWeight: "bold", color: theme.palette.secondary.main}}>
                         Danke!
                     </Button>
                 </DialogActions>
