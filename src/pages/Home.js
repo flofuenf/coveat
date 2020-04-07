@@ -1,9 +1,9 @@
 import React from "react";
-import CitySelection from "../components/CitySelection";
+import CitySelection from "../components/ui/CitySelection";
 import styled from "styled-components";
-import ShipmentSwitch from "../components/ShipmentSwitch";
+import ShipmentSwitch from "../components/ui/ShipmentSwitch";
 import Overview from "../components/Overview";
-import NonShipmentSwitch from "../components/NonShipmentSwitch";
+import NonShipmentSwitch from "../components/ui/NonShipmentSwitch";
 
 const Centered = styled.div`
   text-align: center;

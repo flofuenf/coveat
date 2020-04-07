@@ -19,6 +19,10 @@ function SideMenu(props) {
         props.toggleDrawer()
     }
 
+    function dialogWindow (){
+        props.dialogOpen();
+    }
+
     return (
         <div>
             <List>
@@ -40,7 +44,7 @@ function SideMenu(props) {
             </List>
             <Divider/>
             <List>
-                <ListItem button onClick={() => navigateTo("")}>
+                <ListItem button onClick={() => dialogWindow()}>
                     <ListItemIcon><ContactIcon/></ListItemIcon>
                     <ListItemText>Kontakt</ListItemText>
                 </ListItem>
@@ -54,7 +58,10 @@ export default function SideBar(props) {
         <React.Fragment>
             <Drawer variant={"temporary"} anchor={'left'} open={props.open} onClose={() => props.toggleDrawer()}>
                 <div role="presentation">
-                    <SideMenu toggleDrawer={props.toggleDrawer}/>
+                    <SideMenu
+                        toggleDrawer={props.toggleDrawer}
+                        dialogOpen={props.dialogOpen}
+                    />
                 </div>
             </Drawer>
         </React.Fragment>

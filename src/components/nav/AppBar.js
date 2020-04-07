@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import styled from "styled-components";
 import SideBar from "./SideBar";
+import ContactDialog from "../Contact";
 
 const Title = styled(Typography)`
   text-align: center;
@@ -13,7 +14,15 @@ const Title = styled(Typography)`
 export default function BasicAppBar() {
     const [state, setState] = React.useState({
         open: false,
+        dialog: false,
     });
+
+    const dialogOpen = () => {
+        setState({...state, dialog: true});
+    };
+    const dialogClose = () => {
+        setState({...state, dialog: false});
+    };
 
     const toggleDrawer = () => {
         setState({...state, open: !state.open});
@@ -21,8 +30,14 @@ export default function BasicAppBar() {
 
     return (
         <div>
+            <ContactDialog
+                dialogOpen={dialogOpen.bind(this)}
+                dialogClose={dialogClose.bind(this)}
+                dialog={state.dialog}
+            />
             <SideBar
                 toggleDrawer={toggleDrawer.bind(this)}
+                dialogOpen={dialogOpen.bind(this)}
                 open={state.open}
             />
             <AppBar position="static">
