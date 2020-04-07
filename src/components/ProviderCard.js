@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import styled from "styled-components";
 import Chip from "@material-ui/core/Chip/Chip";
 import Phone from '@material-ui/icons/Phone';
+import {theme} from "../themes/theme";
 
 
 const StyledCard = styled(Card)`
@@ -48,14 +49,16 @@ export default function ProviderCard(provider, isShipping) {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="medium" color="primary">
-                    Speisekarte
+                <div style={{width: "100%"}}>
+                <Button size="medium" variant={"text"} style={{marginRight: 12, fontWeight: "bold", color: theme.palette.secondary}}>
+                    Angebote
                 </Button>
-                <Button>
+                <Button style={{marginLeft: 12}}>
                     <a href={'tel://' + provider.phoneNumber}>
-                        <Phone color="primary"/>
+                        <Phone style={{color: "#00A203"}}/>
                     </a>
                 </Button>
+                </div>
             </CardActions>
         </StyledCard>
     );
