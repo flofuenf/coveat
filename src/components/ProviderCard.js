@@ -3,28 +3,35 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import styled from "styled-components";
 import Chip from "@material-ui/core/Chip/Chip";
 import Phone from '@material-ui/icons/Phone';
 import {theme} from "../themes/theme";
-
+import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
+import ImageLoader from 'react-imageloader';
 
 const StyledCard = styled(Card)`
   width: 200px;
+`;
+
+const StyledImageLoader = styled(ImageLoader)`
+  width: 100%;
+  height: 150px;
 `;
 
 export default function ProviderCard(provider, isShipping) {
     return (
         <StyledCard>
             <CardActionArea>
-                <CardMedia
-                    style={{height: 0, paddingTop: '140px'}}
-                    image={provider.overviewPictureUrl}
-                    title="Overview Image"
-                />
+                <StyledImageLoader
+                    imgProps={{style: {height: 150, width: "100%"}}}
+                    src={provider.overviewPictureUrl}
+                    wrapper={React.createFactory('div')}
+                    preloader={() => <CircularProgress />}>
+                    Image load failed!
+                </StyledImageLoader>
                 <CardContent style={{height: 160}}>
                     <div style={{flex: 1}}>
                         <Typography gutterBottom variant="h6" style={{fontSize: "1.3em", margin: 0}}>
@@ -50,14 +57,15 @@ export default function ProviderCard(provider, isShipping) {
             </CardActionArea>
             <CardActions>
                 <div style={{width: "100%"}}>
-                <Button size="medium" variant={"text"} style={{marginRight: 12, fontWeight: "bold", color: theme.palette.secondary}}>
-                    Angebote
-                </Button>
-                <Button style={{marginLeft: 12}}>
-                    <a href={'tel://' + provider.phoneNumber}>
-                        <Phone style={{color: "#00A203"}}/>
-                    </a>
-                </Button>
+                    <Button size="medium" variant={"text"}
+                            style={{marginRight: 12, fontWeight: "bold", color: theme.palette.secondary}}>
+                        Angebote
+                    </Button>
+                    <Button style={{marginLeft: 12}}>
+                        <a href={'tel://' + provider.phoneNumber}>
+                            <Phone style={{color: "#00A203"}}/>
+                        </a>
+                    </Button>
                 </div>
             </CardActions>
         </StyledCard>
