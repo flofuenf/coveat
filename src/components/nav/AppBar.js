@@ -47,7 +47,7 @@ export default function BasicAppBar(props) {
             />
             <AppBar position="static">
                 <Toolbar>
-                    {props.isDetail ?
+                    {props.arrowBack ?
                         <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => goBack()}>
                             <ArrowBackIcon/>
                         </IconButton> :

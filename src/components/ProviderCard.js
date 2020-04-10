@@ -22,7 +22,7 @@ const StyledImageLoader = styled(ImageLoader)`
   height: 150px;
 `;
 
-export default function ProviderCard(provider, isShipping, cityID, setDetailPage) {
+export default function ProviderCard(provider, cityID, setDetailPage) {
     const history = useHistory();
 
     function openDetailPage(link) {
@@ -33,35 +33,34 @@ export default function ProviderCard(provider, isShipping, cityID, setDetailPage
     function openOffers(link){
        window.location.href = link
     }
-
     return (
         <StyledCard>
             <CardActionArea>
                 <StyledImageLoader style={{backgroundColor: "lightGrey"}}
                     imgProps={{style: {height: 150, width: "100%"}}}
-                    src={provider.overviewPictureUrl}
+                    src={provider.imageURL}
                     wrapper={React.createFactory('div')}
                     preloader={() => <CircularProgress style={{marginTop: "30%"}}/>}>
                     Image load failed!
                 </StyledImageLoader>
-                <CardContent style={{height: 160}} onClick={() => openDetailPage("/" + cityID + "/" + provider.id)}>
+                <CardContent style={{height: 160}} onClick={() => openDetailPage("/" + cityID + "/" + provider.guid)}>
                     <div style={{flex: 1}}>
                         <Typography gutterBottom variant="h6" style={{fontSize: "1.3em", margin: 0}}>
                             {provider.name}
                         </Typography>
                         <br/>
                         <div style={{position: "absolute", bottom: 10, width: "85%"}}>
-                            <Chip color="primary" label={isShipping ? 'Lieferservice' : 'Selbstabholung'}/>
+                            <Chip color="primary" label={provider.isShipping ? 'Lieferservice' : 'Selbstabholung'}/>
                             <br/>
                             <br/>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                {provider.addressLine1}
+                                {provider.street}
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                {provider.addressLine2}
+                                {provider.zip + " " + provider.city}
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                {provider.phoneNumber}
+                                {provider.telephone}
                             </Typography>
                         </div>
                     </div>

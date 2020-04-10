@@ -4,15 +4,16 @@ import Switch from '@material-ui/core/Switch';
 
 export default function NonShipmentSwitch(props) {
     const [state, setState] = React.useState({
-        shipment: props.isNonShipping,
+        pickup: props.pickupFilter,
     });
 
-    useEffect(() => {
-        setState({ shipment: props.isNonShipping});
-    }, [props.isNonShipping]);
+    // useEffect(() => {
+    //     setState({ shipment: props.shippingSwitched});
+    //     setState({pickup: props.pickupFilter});
+    // }, [props.pickupFilter]);
 
     const handleChange = (event) => {
-        props.nonShippingSwitched(event.target.checked);
+        props.setFilter();
         setState({ ...state, [event.target.name]: event.target.checked });
     };
 

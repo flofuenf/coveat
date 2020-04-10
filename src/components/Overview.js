@@ -15,8 +15,8 @@ export default function Overview(props) {
             <Grid item>
                 <Grid container justify="center" spacing={2}>
                     {props.providers && props.providers.map((value) => (
-                        <Grid key={value.id} item>
-                            { ProviderCard(value, value.isShipping, props.cityID, props.setDetailPage) }
+                        <Grid key={value.guid} item>
+                            { ProviderCard(value, props.cityID, props.setArrowBack) }
                         </Grid>
                     ))}
                 </Grid>

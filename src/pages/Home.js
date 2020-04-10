@@ -1,9 +1,10 @@
-import React, {useEffect} from "react";
+import React from "react";
 import CitySelection from "../components/ui/CitySelection";
 import ShipmentSwitch from "../components/ui/ShipmentSwitch";
-import Overview from "../components/Overview";
-import NonShipmentSwitch from "../components/ui/NonShipmentSwitch";
+import PickupSwitch from "../components/ui/NonShipmentSwitch";
 import withStyles from "@material-ui/core/styles/withStyles";
+import Overview from "../components/Overview";
+import $ from "jquery";
 
 const styles = theme => ({
     centered: {
@@ -15,39 +16,82 @@ const styles = theme => ({
     }
 });
 
-export default withStyles(styles)(function Home(props) {
-    const {classes} = props;
+export default withStyles(styles)(class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            cities: this.props.cities,
+            providers: null,
+            selectedCity: null,
+            shippingFilter: false,
+            pickupFilter: false,
+        }
+    }
 
-    const [state, setState] = React.useState({
-        cities: props.cities,
-        selectedCity: props.selectedCity,
-        isShipping: props.isShipping,
-        isNonShipping: props.isNonShipping,
-    });
+    updateProviders = (data) => {
+        this.setState({providers: data})
+    };
 
-
-    useEffect(() => {
-        setState({
-            ...state,
-            cities: props.cities,
-            selectedCity: props.selectedCity,
-            isShipping: props.isShipping,
-            isNonShipping: props.isNonShipping,
+    getProviders = () =>{
+        let updateProviders = this.updateProviders.bind(this);
+        $.ajax({
+            url: "http://localhost:8000/providersByCity",
+            type: "POST",
+            data: JSON.stringify({"guid": this.state.selectedCity.guid}),
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                if (data.success === true) {
+                    updateProviders(data.result);
+                } else {
+                    console.log("Data, but no success...")
+                }
+            },
+            fail: function () {
+                console.log("Query failed.");
+            }
+        }).done((data) => {
+            console.log(data)
         });
-    }, [props]);
+    };
 
-    return (
-        <div className={classes.centered}>
-            {CitySelection(state.cities, props.selectCity, props.selectedCity)}
-            <br/>
-            <ShipmentSwitch isShipping={state.isShipping} shippingSwitched={props.shippingSwitched}/>
-            <NonShipmentSwitch isNonShipping={state.isNonShipping}
-                               nonShippingSwitched={props.nonShippingSwitched}/>
-            <br/>
-            {props.selectedCity && <Overview
-                providers={props.getProviders(state.selectedCity, state.isShipping, state.isNonShipping)}
-                cityID={props.selectedCity}
-                setDetailPage={props.setDetailPage}/>}
-        </div>
-    );
+    selectCity = (city) => {
+        this.setState({selectedCity: city}, () => this.getProviders())
+    };
+
+    render() {
+
+        const {classes} = this.props;
+
+        const setShippingFilter = () => {
+            this.setState({
+                shippingFilter: !this.state.shippingFilter,
+            })
+        };
+
+        const setPickupFilter = () => {
+            this.setState({
+                pickupFilter: !this.state.pickupFilter,
+            })
+        };
+
+
+        return (
+            <div className={classes.centered}>
+                <CitySelection
+                    cities={this.state.cities}
+                    selectCity={this.selectCity.bind(this)}
+                    selectedCity={this.state.selectedCity}/>
+                <br/>
+                <ShipmentSwitch shippingSwitched={this.state.shippingFilter} setFilter={setShippingFilter}/>
+                <PickupSwitch pickupSwitched={this.state.pickupFilter}
+                              setFilter={setPickupFilter}/>
+                <br/>
+                {this.state.selectedCity && <Overview
+                    providers={this.state.providers}
+                    cityID={this.state.selectedCity}
+                    setArrowBack={this.props.setArrowBack}/>}
+            </div>
+        );
+    }
 })

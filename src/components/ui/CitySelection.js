@@ -4,13 +4,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-export default function CitySelection(cities, selectCity) {
-    const [city, setCity] = React.useState({
-    });
+export default function CitySelection(props) {
+    const {cities, selectCity} = props;
+
+    const [city, setCity] = React.useState('');
 
     const handleChange = (event) => {
-        selectCity(event.target.value);
         setCity(event.target.value);
+        selectCity(event.target.value);
     };
 
     return (
@@ -26,7 +27,7 @@ export default function CitySelection(cities, selectCity) {
                     {
                         cities.map(c => {
                             return (
-                                <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>
+                                <MenuItem key={c.guid} value={c}>{c.name}</MenuItem>
                             )
                         })
                     }

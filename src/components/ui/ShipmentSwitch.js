@@ -4,15 +4,15 @@ import Switch from '@material-ui/core/Switch';
 
 export default function ShipmentSwitch(props) {
     const [state, setState] = React.useState({
-        shipment: props.isShipping,
+        shipment: props.shippingSwitched,
     });
 
     useEffect(() => {
-        setState({ shipment: props.isShipping});
-    }, [props.isShipping]);
+        setState({ shipment: props.shippingSwitched});
+    }, [props.shippingSwitched]);
 
     const handleChange = (event) => {
-        props.shippingSwitched(event.target.checked);
+        props.setFilter();
         setState({ ...state, [event.target.name]: event.target.checked });
     };
 
