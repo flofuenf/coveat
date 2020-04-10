@@ -37,11 +37,11 @@ export default function ProviderCard(provider, isShipping, cityID, setDetailPage
     return (
         <StyledCard>
             <CardActionArea>
-                <StyledImageLoader
+                <StyledImageLoader style={{backgroundColor: "lightGrey"}}
                     imgProps={{style: {height: 150, width: "100%"}}}
                     src={provider.overviewPictureUrl}
                     wrapper={React.createFactory('div')}
-                    preloader={() => <CircularProgress/>}>
+                    preloader={() => <CircularProgress style={{marginTop: "30%"}}/>}>
                     Image load failed!
                 </StyledImageLoader>
                 <CardContent style={{height: 160}} onClick={() => openDetailPage("/" + cityID + "/" + provider.id)}>
