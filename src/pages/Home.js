@@ -22,6 +22,7 @@ export default withStyles(styles)(class Home extends React.Component {
         this.state = {
             cities: this.props.cities,
             providers: null,
+            sortedProviders: null,
             selectedCity: null,
             shippingFilter: false,
             pickupFilter: false,
@@ -29,7 +30,24 @@ export default withStyles(styles)(class Home extends React.Component {
     }
 
     updateProviders = (data) => {
-        this.setState({providers: data})
+        if(!data){
+            return;
+        }
+
+        let sorted = [];
+        console.log(data);
+
+        if(this.state.shippingFilter || this.state.pickupFilter){
+            for(let i=0; i<data.length; i++){
+                if (this.state.shippingFilter && data[i].isShipping){
+                    sorted.push(data[i])
+                }else if(this.state.pickupFilter && data[i].isPickup) {
+                    sorted.push(data[i]);
+                }
+            }
+        }
+
+        this.setState({providers: data ? data : this.state.providers, sortedProviders: sorted}, () => console.log(this.state))
     };
 
     getProviders = () =>{
@@ -56,7 +74,7 @@ export default withStyles(styles)(class Home extends React.Component {
     };
 
     selectCity = (city) => {
-        this.setState({selectedCity: city}, () => this.getProviders())
+        this.setState({selectedCity: city, providers: null}, () => this.getProviders())
     };
 
     render() {
@@ -66,13 +84,13 @@ export default withStyles(styles)(class Home extends React.Component {
         const setShippingFilter = () => {
             this.setState({
                 shippingFilter: !this.state.shippingFilter,
-            })
+            }, () => this.updateProviders(this.state.providers))
         };
 
         const setPickupFilter = () => {
             this.setState({
                 pickupFilter: !this.state.pickupFilter,
-            })
+            }, () => this.updateProviders(this.state.providers))
         };
 
 
@@ -88,7 +106,7 @@ export default withStyles(styles)(class Home extends React.Component {
                               setFilter={setPickupFilter}/>
                 <br/>
                 {this.state.selectedCity && <Overview
-                    providers={this.state.providers}
+                    providers={this.state.sortedProviders}
                     cityID={this.state.selectedCity}
                     setArrowBack={this.props.setArrowBack}/>}
             </div>
