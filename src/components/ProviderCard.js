@@ -30,6 +30,10 @@ export default function ProviderCard(provider, isShipping, cityID, setDetailPage
         history.push(link);
     }
 
+    function openOffers(link){
+       window.location.href = link
+    }
+
     return (
         <StyledCard>
             <CardActionArea>
@@ -66,7 +70,8 @@ export default function ProviderCard(provider, isShipping, cityID, setDetailPage
             <CardActions>
                 <div style={{width: "100%"}}>
                     <Button size="medium" variant={"text"}
-                            style={{marginRight: 12, fontWeight: "bold", color: theme.palette.secondary}}>
+                            style={{marginRight: 12, fontWeight: "bold", color: theme.palette.secondary}}
+                            onClick={() => openOffers(provider.offerUrl)}>
                         Angebote
                     </Button>
                     <Button style={{marginLeft: 12}}>
