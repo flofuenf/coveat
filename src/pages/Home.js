@@ -15,7 +15,7 @@ const styles = theme => ({
     }
 });
 
-export default withStyles(styles) (function Home(props) {
+export default withStyles(styles)(function Home(props) {
     const {classes} = props;
 
     const [state, setState] = React.useState({
@@ -38,14 +38,16 @@ export default withStyles(styles) (function Home(props) {
 
     return (
         <div className={classes.centered}>
-            {CitySelection(state.cities, props.citySelected)}
+            {CitySelection(state.cities, props.selectCity, props.selectedCity)}
             <br/>
             <ShipmentSwitch isShipping={state.isShipping} shippingSwitched={props.shippingSwitched}/>
             <NonShipmentSwitch isNonShipping={state.isNonShipping}
                                nonShippingSwitched={props.nonShippingSwitched}/>
             <br/>
-            {state.selectedCity && <Overview
-                providers={props.getProviders(state.selectedCity, state.isShipping, state.isNonShipping)}/>}
+            {props.selectedCity && <Overview
+                providers={props.getProviders(state.selectedCity, state.isShipping, state.isNonShipping)}
+                cityID={props.selectedCity}
+                setDetailPage={props.setDetailPage}/>}
         </div>
     );
 })

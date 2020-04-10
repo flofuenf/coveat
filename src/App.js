@@ -20,6 +20,7 @@ export default function App() {
         }
     ];
     const [state, setState] = React.useState({
+        onDetailPage: false,
         selectedCity: undefined,
         isShipping: false,
         isNonShipping: false,
@@ -111,7 +112,7 @@ export default function App() {
         }
     });
 
-    const citySelected = (cityId) => {
+    const selectCity = (cityId) => {
         setState({...state, selectedCity: cityId})
     };
 
@@ -138,11 +139,18 @@ export default function App() {
         }
     };
 
+    const setDetailPage = () => {
+      setState({...state, onDetailPage: !state.onDetailPage})
+    };
+
     return (
         <div>
             <MuiThemeProvider theme={theme}>
                 <div>
-                    <BasicAppBar/>
+                    <BasicAppBar
+                        isDetail ={state.onDetailPage}
+                        setDetailPage={setDetailPage}
+                    />
                 </div>
                 <div>
                     <Route exact path='/' render={(props) =>
@@ -155,9 +163,10 @@ export default function App() {
                               shippingSwitched={shippingSwitched}
                               nonShippingSwitched={nonShippingSwitched}
                               getProviders={getProviders}
-                              citySelected={citySelected}
+                              selectCity={selectCity}
+                              setDetailPage={setDetailPage}
                         />}/>
-                    <Route exact path='/city/:cityId/provider/:id'
+                    <Route exact path='/:cityId/:id'
                            render={(props) =>
                                <ProviderDetail {...props}
                                                provider={() => {

@@ -6,12 +6,16 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import SideBar from "./SideBar";
 import ContactDialog from "../Contact";
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import {useHistory} from "react-router-dom";
 
-export default function BasicAppBar() {
+export default function BasicAppBar(props) {
     const [state, setState] = React.useState({
         open: false,
         dialog: false,
     });
+
+    const history = useHistory();
 
     const dialogOpen = () => {
         setState({...state, dialog: true});
@@ -22,6 +26,11 @@ export default function BasicAppBar() {
 
     const toggleDrawer = () => {
         setState({...state, open: !state.open});
+    };
+
+    const goBack = () => {
+        props.setDetailPage();
+        history.goBack();
     };
 
     return (
@@ -38,9 +47,13 @@ export default function BasicAppBar() {
             />
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => toggleDrawer()}>
-                        <MenuIcon/>
-                    </IconButton>
+                    {props.isDetail ?
+                        <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => goBack()}>
+                            <ArrowBackIcon/>
+                        </IconButton> :
+                        <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => toggleDrawer()}>
+                            <MenuIcon/>
+                        </IconButton>}
                     <Typography variant="h6" style={{textAlign: "center"}}>
                         Local Eats
                     </Typography>

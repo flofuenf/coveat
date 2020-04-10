@@ -4,18 +4,21 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-export default function CitySelection(cities, selectedCity) {
-    const [city, setCity] = React.useState('');
+export default function CitySelection(cities, selectCity) {
+    const [city, setCity] = React.useState({
+    });
 
     const handleChange = (event) => {
-        selectedCity(event.target.value);
+        selectCity(event.target.value);
         setCity(event.target.value);
     };
 
     return (
         <div>
             <FormControl>
-                <InputLabel>Stadt auswählen</InputLabel>
+                <InputLabel>
+                    "Stadt auswählen"
+                </InputLabel>
                 <Select
                     value={city}
                     onChange={handleChange}

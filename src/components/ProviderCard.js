@@ -11,6 +11,7 @@ import Phone from '@material-ui/icons/Phone';
 import {theme} from "../themes/theme";
 import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
 import ImageLoader from 'react-imageloader';
+import {useHistory} from "react-router-dom";
 
 const StyledCard = styled(Card)`
   width: 200px;
@@ -21,7 +22,14 @@ const StyledImageLoader = styled(ImageLoader)`
   height: 150px;
 `;
 
-export default function ProviderCard(provider, isShipping) {
+export default function ProviderCard(provider, isShipping, cityID, setDetailPage) {
+    const history = useHistory();
+
+    function openDetailPage(link) {
+        setDetailPage();
+        history.push(link);
+    }
+
     return (
         <StyledCard>
             <CardActionArea>
@@ -29,10 +37,10 @@ export default function ProviderCard(provider, isShipping) {
                     imgProps={{style: {height: 150, width: "100%"}}}
                     src={provider.overviewPictureUrl}
                     wrapper={React.createFactory('div')}
-                    preloader={() => <CircularProgress />}>
+                    preloader={() => <CircularProgress/>}>
                     Image load failed!
                 </StyledImageLoader>
-                <CardContent style={{height: 160}}>
+                <CardContent style={{height: 160}} onClick={() => openDetailPage("/" + cityID + "/" + provider.id)}>
                     <div style={{flex: 1}}>
                         <Typography gutterBottom variant="h6" style={{fontSize: "1.3em", margin: 0}}>
                             {provider.name}
