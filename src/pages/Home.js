@@ -35,7 +35,6 @@ export default withStyles(styles)(class Home extends React.Component {
         }
 
         let sorted = [];
-        console.log(data);
 
         if(this.state.shippingFilter || this.state.pickupFilter){
             for(let i=0; i<data.length; i++){
@@ -45,9 +44,9 @@ export default withStyles(styles)(class Home extends React.Component {
                     sorted.push(data[i]);
                 }
             }
-        }
+        }else sorted = data;
 
-        this.setState({providers: data ? data : this.state.providers, sortedProviders: sorted}, () => console.log(this.state))
+        this.setState({providers: data ? data : this.state.providers, sortedProviders: sorted})
     };
 
     getProviders = () =>{
@@ -68,13 +67,11 @@ export default withStyles(styles)(class Home extends React.Component {
             fail: function () {
                 console.log("Query failed.");
             }
-        }).done((data) => {
-            console.log(data)
         });
     };
 
     selectCity = (city) => {
-        this.setState({selectedCity: city, providers: null}, () => this.getProviders())
+        this.setState({selectedCity: city, providers: null, sortedProviders: null}, () => this.getProviders())
     };
 
     render() {
